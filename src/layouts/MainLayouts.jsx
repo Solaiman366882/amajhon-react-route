@@ -1,7 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Nav from "../components/Nav/Nav";
 import Footer from "../components/Footer/Footer";
+import Spinner from "../components/Spinner/Spinner";
 const MainLayouts = () => {
+
+    const isLoadingData = useNavigation();
+    console.log(isLoadingData.state ==='loading');
+
     return (
         <div>
             <section>
@@ -9,7 +14,9 @@ const MainLayouts = () => {
                     <Nav></Nav>
                 </div>
                 <div className=" min-h-screen">
-                    <Outlet></Outlet>
+                {
+                    isLoadingData?<Spinner></Spinner>:<Outlet></Outlet>
+                }
                 </div>
                 <div className="py-4 shadow-lg">
                     <Footer></Footer>

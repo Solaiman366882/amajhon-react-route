@@ -22,9 +22,11 @@ const myCreatedRoute = createBrowserRouter([
                 loader:() => fetch(`https://dummyjson.com/products`)
             },
             {
-                path:"/products:id",
-                element:<Product></Product>
+                path:"/products/product/:id",
+                element:<Product></Product>,
+                loader:({params}) => fetch(`https://dummyjson.com/products/${params.id}`)
             },
+            
             {
                 path:"/",
                 element:<Home></Home>
